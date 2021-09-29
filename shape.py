@@ -57,8 +57,8 @@ class Triangle(Shape):
     def calculate_area(self):
         return 0.5 * self.base * self.height
     
-    def calculate_perimeter(self):
-        pass
+    def calculate_perimeter(self, side2, side3):
+        return self.base + side2 + side3
 
 class RightTriangle(Triangle):
     def calculate_hypotenuse(self):
