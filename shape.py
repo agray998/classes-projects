@@ -1,7 +1,7 @@
 '''
-Create class and sub-class objects which represent
-different geometrical shapes, such as Rectangles 
-and Squares.
+Create a class and sub-classes which represent different geometrical shapes, 
+such as Rectangles and Squares. Give these classes methods to perform 
+geometric calculations such as area and perimeter.
 '''
 
 from abc import ABC, abstractmethod
