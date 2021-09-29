@@ -7,6 +7,7 @@ between categories.
 '''
 
 class Budget():
+    @staticmethod
     def move(budget1, category1, budget2, category2, amount):
         budget1.withdraw(category1, amount)
         budget2.deposit(category2, amount)
