@@ -1,7 +1,7 @@
 '''
 Create a class and sub-classes which represent different geometrical shapes, 
 such as Rectangles and Squares. Give these classes methods to perform 
-geometric calculations such as area and perimeter.
+geometric calculations such as finding the area and perimeter of a shape.
 '''
 
 from abc import ABC, abstractmethod
