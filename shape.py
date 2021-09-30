@@ -35,10 +35,10 @@ class Circle(Shape):
     def __init__(self, radius):
         self.radius = radius
     
-    def calculate_circumference(self):
+    def calculate_perimeter(self):
         return math.pi * (2 * self.radius)
     
-    calculate_perimeter = lambda self: self.calculate_circumference()
+    calculate_circumference = lambda self: self.calculate_circumference()
     
     def calculate_area(self):
         return math.pi * (self.radius ** 2)
