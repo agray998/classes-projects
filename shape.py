@@ -50,15 +50,18 @@ class Circle(Shape):
         return 0.5 * (self.radius ** 2) * theta
 
 class Triangle(Shape):
-    def __init__(self, base, height):
+    def __init__(self, base, height, a = 1):
         self.base = base
         self.height = height
+        self.a = a
     
     def calculate_area(self):
         return 0.5 * self.base * self.height
     
-    def calculate_perimeter(self, side2, side3):
-        return self.base + side2 + side3
+    def calculate_perimeter(self):
+        tr_a = RightTriangle((self.a * self.base), self.height)
+        tr_b = RightTriangle(((1 - self.a) * self.base), self.height)
+        return self.base + tr_a.calculate_hypotenuse() + tr_b.calculate_hypotenuse()
 
 class RightTriangle(Triangle):
     def calculate_hypotenuse(self):
@@ -89,3 +92,5 @@ print(circ.calculate_circumference())
 trap = Trapezoid(3, 5, 3)
 print(trap.calculate_area())
 print(trap.calculate_perimeter())
+tri = Triangle(6, 1.5, (3.2 / 6))
+print(tri.calculate_perimeter())
