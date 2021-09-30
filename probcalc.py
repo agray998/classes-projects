@@ -18,11 +18,7 @@ class ProbabilityCalculator():
         self.balls = balls
     
     def sample(self, n):
-        sample = []
-        for i in range(n):
-            sample.append(choice(self.balls))
-        sample_result = {colour:(sample.count(colour) / n) for colour in self.colours}
-        return sample_result
+        return {colour:([choice(self.balls) for i in range(n)].count(colour) / n) for colour in self.colours}
 
 probcalc = ProbabilityCalculator({"red":3, "green":4, "blue":5, "yellow":2, "black":10, "white":7})
-print(probcalc.sample(100))
+print(probcalc.sample(1000))

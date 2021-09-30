@@ -38,7 +38,7 @@ class Circle(Shape):
     def calculate_perimeter(self):
         return math.pi * (2 * self.radius)
     
-    calculate_circumference = lambda self: self.calculate_circumference()
+    calculate_circumference = lambda self: self.calculate_perimeter()
     
     def calculate_area(self):
         return math.pi * (self.radius ** 2)
