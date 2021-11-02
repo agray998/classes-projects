@@ -39,7 +39,6 @@ class Budget():
     
     def __repr__(self):
         return f"-----\nTotal budget is {self.total}.\nEntertainment: {(self.entertainment/self.total)*100:.2f}%\nFood: {(self.food/self.total)*100:.2f}%\nClothing: {(self.clothing/self.total)*100:.2f}%\nUtilities: {(self.utilities/self.total)*100:.2f}%\nRent: {(self.rent/self.total)*100:.2f}%\n-----"
-        
 
 # Example usage
 budget = Budget(100, 50, 100, 200, 300)

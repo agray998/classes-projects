@@ -83,6 +83,7 @@ class Trapezoid(Shape):
         triangle = RightTriangle(abs(self.a - self.b), self.h)
         return self.a + self.b + 2 * (triangle.calculate_hypotenuse())
 
+# Example usage
 rect = Rectangle(3, 4)
 print(rect.calculate_perimeter())
 print(rect.calculate_area())
