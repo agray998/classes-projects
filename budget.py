@@ -15,7 +15,7 @@ class Budget():
     def __init__(self, dict_of_cats):
         self.cats = dict_of_cats.keys()
         for key in dict_of_cats.keys():
-            setattr(self, key, dict_of_cats[key])
+            setattr(self, key.lower(), dict_of_cats[key])
         self.total = sum(dict_of_cats.values())
     
     def deposit(self, category, amount):
