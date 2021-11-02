@@ -12,13 +12,11 @@ class Budget():
         budget1.withdraw(category1, amount)
         budget2.deposit(category2, amount)
     
-    def __init__(self, food, clothing, entertainment, utilities, rent):
-        self.clothing = clothing
-        self.food = food
-        self.entertainment = entertainment
-        self.utilities = utilities
-        self.rent = rent
-        self.total = self.clothing + self.food + self.entertainment + self.utilities + self.rent
+    def __init__(self, dict_of_cats):
+        self.cats = dict_of_cats.keys()
+        for key in dict_of_cats.keys():
+            setattr(self, key, dict_of_cats[key])
+        self.total = sum(dict_of_cats.values())
     
     def deposit(self, category, amount):
         self.total += amount
@@ -38,14 +36,15 @@ class Budget():
         self.deposit(category2, amount)
     
     def __repr__(self):
-        return f"-----\nTotal budget is {self.total}.\nEntertainment: {(self.entertainment/self.total)*100:.2f}%\nFood: {(self.food/self.total)*100:.2f}%\nClothing: {(self.clothing/self.total)*100:.2f}%\nUtilities: {(self.utilities/self.total)*100:.2f}%\nRent: {(self.rent/self.total)*100:.2f}%\n-----"
+        newline = '\n'
+        return f"""-----\nTotal budget is {self.total}.\n{newline.join([f"{cat.capitalize()}: {getattr(self, cat) / self.total * 100:.2f}%" for cat in self.cats])}\n-----"""
 
 # Example usage
-budget = Budget(100, 50, 100, 200, 300)
+budget = Budget({'food':100, 'clothing':50, 'entertainment':100, 'utilities':200, 'rent':300})
 budget.deposit("Entertainment", 20)
 budget.withdraw("rent", 50)
 budget.transfer("entertainment", "rent", 50)
 print(budget)
-newbudget = Budget(50, 30, 20, 100, 200)
+newbudget = Budget({'food':50, 'clothing':30, 'entertainment':20, 'utilities':100, 'rent':200})
 Budget.move(budget, "rent", newbudget, "food", 30)
 print(newbudget)
