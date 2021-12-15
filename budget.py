@@ -13,31 +13,27 @@ class Budget():
         budget2.deposit(category2, amount)
     
     def __init__(self, dict_of_cats):
-        self.cats = dict_of_cats.keys()
-        for key in dict_of_cats.keys():
-            setattr(self, key.lower(), dict_of_cats[key])
+        self.cats = dict_of_cats
         self.total = sum(dict_of_cats.values())
     
     def deposit(self, category, amount):
         self.total += amount
-        amount += getattr(self, category.lower())
-        setattr(self, category.lower(), amount)
-        print(f"{category.capitalize()} budget is now {amount}")
+        self.cats[category.lower()] += amount
+        print(f"{category.capitalize()} budget is now {self.cats[category.lower()]}")
 
     def withdraw(self, category, amount):
         self.total -= amount
-        currentBal = getattr(self, category.lower())
-        setattr(self, category.lower(), currentBal - amount)
-        print(f"{category.capitalize()} budget is now {currentBal - amount}")
+        self.cats[category.lower()] -= amount
+        print(f"{category.capitalize()} budget is now {self.cats[category.lower()]}")
     
     def transfer(self, category1, category2, amount):
-        print(f"Transferred {amount} from {category1.capitalize()} to {category2.capitalize()}")
         self.withdraw(category1, amount)
         self.deposit(category2, amount)
+        print(f"Transferred {amount} from {category1.capitalize()} to {category2.capitalize()}")
     
-    def __repr__(self):
+    def __str__(self):
         newline = '\n'
-        return f"""-----\nTotal budget is {self.total}.\n{newline.join([f"{cat.capitalize()}: {getattr(self, cat) / self.total * 100:.2f}%" for cat in self.cats])}\n-----"""
+        return f"""-----\nTotal budget is {self.total}.\n{newline.join([f"{cat.capitalize()}: {self.cats[cat] / self.total * 100:.2f}%" for cat in self.cats])}\n-----"""
 
 # Example usage
 budget = Budget({'food':100, 'clothing':50, 'entertainment':100, 'utilities':200, 'rent':300})
