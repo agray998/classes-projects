@@ -20,7 +20,10 @@ class Budget():
     
     def deposit(self, category, amount):
         self.total += amount
-        self.cats[category.lower()] += amount
+        if category.lower() in self.cats:
+            self.cats[category.lower()] += amount
+        else:
+            self.cats[category.lower()] = amount
         setattr(self, category.lower(), self.cats[category.lower()])
         print(f"{category.capitalize()} budget is now {self.cats[category.lower()]}")
 
