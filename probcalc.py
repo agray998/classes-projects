@@ -1,25 +1,25 @@
 '''
-Create a lottery ball, or Hat, that takes a variable number of arguments
-that specify the number of balls of each color that are in the hat. Give
-the object the ability to pick a random number of balls from the hat,
-which will then be used to compute the probability of picking a certain
-distribution of balls over a large number of experiments.
+Create a class which represents hats with coloured balls, that takes a 
+variable number of arguments specifying the number of balls of each colour 
+that are in the hat. Define a method which can be used to take a random 
+sample of balls from the hat, and record the occurences of each colour to
+calculate the distribution of colours within the hat.
 '''
 
 from random import choice
 
 class ProbabilityCalculator():
-    def __init__(self, dict):
-        self.dict = dict
-        self.colours = dict.keys()
+    def __init__(self, **cols):
+        self.dict = cols
+        self.colours = cols.keys()
         balls = []
         for colour in self.colours:
-            balls.extend([colour for i in range(dict[colour])])
+            balls.extend([colour for i in range(cols[colour])])
         self.balls = balls
     
     def sample(self, n):
         return {colour:([choice(self.balls) for i in range(n)].count(colour) / n) for colour in self.colours}
 
 # Example usage
-probcalc = ProbabilityCalculator({"red":3, "green":4, "blue":5, "yellow":2, "black":10, "white":7})
+probcalc = ProbabilityCalculator(red=3, green=4, blue=5, yellow=2, black=10, white=7)
 print(probcalc.sample(1000))

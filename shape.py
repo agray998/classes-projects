@@ -1,11 +1,12 @@
 '''
-Create a class and sub-classes which represent different geometrical shapes, 
-such as Rectangles and Squares. Give these classes methods to perform 
-geometric calculations such as finding the area and perimeter of a shape.
+Create a shape class, and sub-classes which represent different geometric
+shapes, such as rectangles, circles and triangles. Give these classes 
+methods to perform standard geometric calculations such as finding the 
+area and perimeter of a shape.
 '''
 
 from abc import ABC, abstractmethod
-import math
+from math import pi, sqrt
 
 class Shape(ABC):
     @abstractmethod
@@ -36,12 +37,12 @@ class Circle(Shape):
         self.radius = radius
     
     def calculate_perimeter(self):
-        return math.pi * (2 * self.radius)
+        return pi * (2 * self.radius)
     
     calculate_circumference = lambda self: self.calculate_perimeter()
     
     def calculate_area(self):
-        return math.pi * (self.radius ** 2)
+        return pi * (self.radius ** 2)
     
     def arc_length(self, theta):
         return self.radius * theta
@@ -65,7 +66,7 @@ class Triangle(Shape):
 
 class RightTriangle(Triangle):
     def calculate_hypotenuse(self):
-        return math.sqrt((self.base ** 2) + (self.height ** 2))
+        return sqrt((self.base ** 2) + (self.height ** 2))
     
     def calculate_perimeter(self):
         return self.base + self.height + self.calculate_hypotenuse()
