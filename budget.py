@@ -21,12 +21,17 @@ class Budget():
     def deposit(self, category, amount):
         self.total += amount
         self.cats[category.lower()] += amount
+        setattr(self, category.lower(), self.cats[category.lower()])
         print(f"{category.capitalize()} budget is now {self.cats[category.lower()]}")
 
     def withdraw(self, category, amount):
-        self.total -= amount
-        self.cats[category.lower()] -= amount
-        print(f"{category.capitalize()} budget is now {self.cats[category.lower()]}")
+        if getattr(self, category.lower()) >= amount:
+            self.total -= amount
+            self.cats[category.lower()] -= amount
+            setattr(self, category.lower(), self.cats[category.lower()])
+            print(f"{category.capitalize()} budget is now {self.cats[category.lower()]}")
+        else:
+            print("Insufficient funds for category:", category)
     
     def transfer(self, category1, category2, amount):
         self.withdraw(category1, amount)
