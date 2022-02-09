@@ -9,8 +9,8 @@ amounts between categories.
 class Budget():
     @staticmethod
     def move(budget1, category1, budget2, category2, amount):
-        budget1.withdraw(category1, amount)
-        budget2.deposit(category2, amount)
+        if budget1.withdraw(category1, amount):
+            budget2.deposit(category2, amount)
     
     def __init__(self, **balances):
         self.cats = balances
@@ -32,11 +32,12 @@ class Budget():
             print(f"{category.capitalize()} budget is now {self.cats[category.lower()]}")
         else:
             print("Insufficient funds for category:", category)
+        return getattr(self, category.lower()) >= amount
     
     def transfer(self, category1, category2, amount):
-        self.withdraw(category1, amount)
-        self.deposit(category2, amount)
-        print(f"Transferred {amount} from {category1.capitalize()} to {category2.capitalize()}")
+        if self.withdraw(category1, amount):
+            self.deposit(category2, amount)
+            print(f"Transferred {amount} from {category1.capitalize()} to {category2.capitalize()}")
     
     def __str__(self):
         newline = '\n'
